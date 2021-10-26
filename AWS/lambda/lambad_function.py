@@ -1,8 +1,10 @@
+import os
 import json
 
 import httplib2
-from apiclient import discovery
 from oauth2client.service_account import ServiceAccountCredentials
+
+from apiclient import discovery
 
 import traceback
 
@@ -24,7 +26,7 @@ class GoogleCalendar(object):
         try:
             credentials = self.get_credentials()
             http = credentials.authorize(httplib2.Http())
-            service = discovery.build("calendar", "v3", http=http)
+            service = discovery.build("calendar", "v3", http=http,cache_discovery=False)
 
             events = (
                 service.events()
@@ -42,18 +44,23 @@ class GoogleCalendar(object):
             return items
 
         except Exception as e:
-            logger.error(traceback.format_exc(sys.exc_info()[2]))
+            raise Exception(f"Error:{e}")
 
 
 def lambda_handler(event, context):
-
+    
+    email = event["email"]
+    time_start = event["start"]
+    time_end = event["end"]
+    
     cal = GoogleCalendar()
-    print(
+    res = (
         cal.get_schedule(
-            "kurita.qwerty@gmail.com",
-            "2021-10-25T12:24:07+09:00",
-            "2021-10-30T12:24:07+09:00",
+            email,
+            time_start,
+            time_end,
         )
     )
+    
 
-    return {"statusCode": 200, "body": json.dumps("Hello from Lambda!")}
+    return {"statusCode": 200, "body": json.dumps(res)}
