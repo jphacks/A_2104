@@ -1,7 +1,4 @@
-import requests
 import json
-import datetime
-import pickle
 import fun_json_to_list
 import fun_add_schedule
 import fun_make_schedule
