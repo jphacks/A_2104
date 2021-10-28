@@ -3,7 +3,7 @@ import json
 import datetime
 
 def place_to_time(destinations, origins, end, mode):
-    url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origins + "&destinations=" + destinations + "&mode=" + mode + "&arrival_time=" + end +"&language=ja&key=AIzaSyDn3ONZCxM5bGzU5UCYwl_lmf2eVM1KaHA"
+    url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origins + "&destinations=" + destinations + "&mode=" + mode + "&arrival_time=" + end +"&language=ja&key=***"
     payload={}
     headers = {}
     raw_response = requests.request("GET", url, headers=headers, data=payload)
