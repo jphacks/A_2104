@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useRef } from "react";
-import { fetchCalendarInfo } from "./API";
+import { fetchCalendarInfo, fetchLastCalendar } from "./API";
 import EventCard from "./components/EventCard";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -20,6 +20,7 @@ function App() {
   const [selectEvents, setSelectEvents] = useState(false);
   const [eventsNum, setEventsNum] = useState(0);
   const [result, setResult] = useState([]);
+  const [output, setOutput] = useState();
   const [needLastCalendar, setNeedLastCalendar] = useState(false);
   const [isFinish, setIsFinish] = useState(false);
 
@@ -31,17 +32,19 @@ function App() {
     const data = await fetchCalendarInfo(inViewNum.current.value);
     setData(JSON.parse(data));
     console.log(JSON.parse(data)[0][0]);
-      JSON.parse(data)[0]
-        .slice(1)
-        .map((event, id) => console.log(event));
+    JSON.parse(data)[0]
+      .slice(1)
+      .map((event, id) => console.log(event));
     setNeedCalendar(true);
   };
   const showEvents = () => {
     setSelectEvents(true);
     setEventsNum(data[1].length);
   };
-    const showLastCalendar = () => {
-        console.log(result);
+  const showLastCalendar = async () => {
+    console.log(result);
+    const output = await fetchLastCalendar(result);
+    setOutput(JSON.parse(output));
     setNeedLastCalendar(true);
     setSelectEvents(false);
     setNeedCalendar(false);
@@ -144,8 +147,8 @@ function App() {
           <div className="lastcalendar body">
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
-                          views={views}
-                          events={result}
+              views={views}
+              events={output[0]}
               locale="ja"
               selectable
               initialView="agendaView"
