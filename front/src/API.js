@@ -9,7 +9,6 @@ export const fetchCalendarInfo = async (days) => {
   };
   const endpoint =
     "https://bp9tcorci4.execute-api.ap-northeast-1.amazonaws.com/production/getevent";
-    const data = await fetch(endpoint, requestOptions);
-    console.log((data));
-  return data;
+    const data = await (await fetch(endpoint, requestOptions)).json();
+  return data.body;
 };

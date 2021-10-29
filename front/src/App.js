@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { fetchCalendarInfo } from "./API";
 import EventCard from "./components/EventCard";
 import FullCalendar from "@fullcalendar/react";
@@ -83,25 +83,21 @@ function App() {
   const [selectEvents, setSelectEvents] = useState(false);
   const [eventsNum, setEventsNum] = useState(0);
   const [byList, setByList] = useState([]);
-  const [needPopup, setNeedPopup] = useState(false);
   const [needLastCalendar, setNeedLastCalendar] = useState(false);
 
   const showCalendar = async () => {
-    setNeedCalendar(true);
     setViews((prev) => ({
       ...prev,
       agendaView: { ...prev.agendaView, dayCount: inViewNum.current.value },
     }));
     const data = await fetchCalendarInfo(inViewNum.current.value);
-    setData(data);
+    setData(JSON.parse(data));
+    console.log(JSON.parse(data)[0][0]);
+    setNeedCalendar(true);
   };
   const showEvents = () => {
     setSelectEvents(true);
     setEventsNum(events[0].eventnum);
-  };
-
-  const openPopup = () => {
-    setNeedPopup(true);
   };
 
   const showLastCalendar = () => {
@@ -136,6 +132,7 @@ function App() {
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
               views={views}
+              events={data[0]}
               locale="ja"
               selectable
               initialView="agendaView"
@@ -155,7 +152,6 @@ function App() {
                 time={event.start["dateTime"]}
                 summary={event.summary}
                 location={event.location}
-                callback={openPopup}
                 key={id}
                 selectW={() =>
                   setByList((prev) => [
