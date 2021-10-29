@@ -92,8 +92,8 @@ function App() {
       ...prev,
       agendaView: { ...prev.agendaView, dayCount: inViewNum.current.value },
     }));
-    setData(await fetchCalendarInfo(inViewNum.current.value));
-    console.log(data);
+    const data = await fetchCalendarInfo(inViewNum.current.value);
+    setData(data);
   };
   const showEvents = () => {
     setSelectEvents(true);
@@ -112,7 +112,7 @@ function App() {
   return (
     <>
       <div>
-        {!selectEvents && !needLastCalendar && (
+        {!selectEvents && !needLastCalendar && !needCalendar && (
           <form>
             <label>
               予定を生成する日数を入力してください:
