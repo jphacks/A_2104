@@ -41,15 +41,6 @@ const EventCard = ({ time, summary, location, selectW, selectC, selectP }) => {
           >
             自家用車
           </button>
-          <button
-            className="btn-public"
-            onClick={() => {
-              selectP();
-              inVisible();
-            }}
-          >
-            公共交通機関
-          </button>
         </div>
       </div>
     );
