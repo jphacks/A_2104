@@ -1,29 +1,37 @@
 import React from "react";
-import Button from '@material-ui/core/Button';
+import { useState } from "react";
+import Button from "@material-ui/core/Button";
 import "./EventCard.css";
 
 const style_box = {
-  alignItems: 'center',
-}
-
-const style_button = {
-  minWidth: 164,       // 数値は"64px"のように、pxとして扱われます
-  lineHeight: "64px",
-  borderRadius: 32,
-  border: "none",
-  padding: "16 16px",
-  color: "#fff",
-  
-  fontSize: 25,
-  root: {
-      justifyContent: 'center'
-  }
+  alignItems: "center",
 };
 
-const EventCard = ({ time, summary, location, callback}) => {
+const EventCard = ({ time, summary, location, selectW, selectC, selectP }) => {
+  const [needPopup, setNeedPopup] = useState(false);
+
+  const Popup = ({ selectW, selectC, selectP }) => {
+    return (
+      <div className="popup">
+        <div className="transportation">
+          <button className="btn-walk" onClick={selectW}>
+            徒歩
+          </button>
+          <button className="btn-car" onClick={selectC}>
+            自家用車
+          </button>
+          <button className="btn-public" onClick={selectP}>
+            公共交通機関
+          </button>
+        </div>
+        <button className="btn-close">完了</button>
+      </div>
+    );
+  };
+
   return (
-    <div className = 'box' style={style_box}>
-      <label className = 'infomation'>
+    <div className="box" style={style_box}>
+      <label className="infomation">
         <div>
           <p>開始時間：{time}</p>
         </div>
@@ -34,11 +42,12 @@ const EventCard = ({ time, summary, location, callback}) => {
           <p>場所：{location}</p>
         </div>
       </label>
-      <span className = 'button'>
-        <Button className='btn' onClick={callback}>
+      <span className="button">
+        <Button className="btn" onClick={() => setNeedPopup(true)}>
           Select
         </Button>
       </span>
+      {needPopup && <Popup selectW selectC selectP></Popup>}
     </div>
   );
 };
