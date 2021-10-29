@@ -22,7 +22,7 @@ const EventCard = ({ time, summary, location, selectW, selectC }) => {
   const Popup = ({ selectW, selectC }) => {
     return (
       <div className="popup">
-        <span class="box-title">移動手段の選択</span>
+        <span className="box-title">移動手段の選択</span>
         <button
           className="btn-t"
           onClick={() => {

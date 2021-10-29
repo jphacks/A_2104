@@ -19,7 +19,7 @@ function App() {
   });
   const [selectEvents, setSelectEvents] = useState(false);
   const [eventsNum, setEventsNum] = useState(0);
-  const [byList, setByList] = useState([]);
+  const [result, setResult] = useState([]);
   const [needLastCalendar, setNeedLastCalendar] = useState(false);
   const [isFinish, setIsFinish] = useState(false);
 
@@ -30,17 +30,18 @@ function App() {
     }));
     const data = await fetchCalendarInfo(inViewNum.current.value);
     setData(JSON.parse(data));
-    /*console.log(JSON.parse(data)[0][0]);
+    console.log(JSON.parse(data)[0][0]);
       JSON.parse(data)[0]
         .slice(1)
-        .map((event, id) => console.log(event));*/
+        .map((event, id) => console.log(event));
     setNeedCalendar(true);
   };
   const showEvents = () => {
     setSelectEvents(true);
     setEventsNum(data[1].length);
   };
-  const showLastCalendar = () => {
+    const showLastCalendar = () => {
+        console.log(result);
     setNeedLastCalendar(true);
     setSelectEvents(false);
     setNeedCalendar(false);
@@ -100,22 +101,26 @@ function App() {
                 location={event.location}
                 key={id}
                 selectW={() =>
-                  setByList((prev) => [
+                  setResult((prev) => [
                     ...prev,
                     {
                       by: "walk",
-                      time: event.start["dateTime"],
+                      start: event.start,
+                      end: event.end,
                       summary: event.summary,
+                      location: event.location,
                     },
                   ])
                 }
                 selectC={() =>
-                  setByList((prev) => [
+                  setResult((prev) => [
                     ...prev,
                     {
                       by: "car",
-                      time: event.start["dateTime"],
+                      start: event.start,
+                      end: event.end,
                       summary: event.summary,
+                      location: event.location,
                     },
                   ])
                 }
@@ -139,7 +144,8 @@ function App() {
           <div className="lastcalendar body">
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
-              views={views}
+                          views={views}
+                          events={result}
               locale="ja"
               selectable
               initialView="agendaView"
