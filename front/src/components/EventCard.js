@@ -33,7 +33,9 @@ const EventCard = ({ time, summary, location, selectW, selectC, selectP }) => {
             公共交通機関
           </button>
         </div>
-        <button className="btn-close" onClick={inVisible}>完了</button>
+        <button className="btn-close" onClick={inVisible}>
+          完了
+        </button>
       </div>
     );
   };

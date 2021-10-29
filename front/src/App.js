@@ -83,7 +83,7 @@ function App() {
   const [selectEvents, setSelectEvents] = useState(false);
   const [eventsNum, setEventsNum] = useState(0);
   const [byList, setByList] = useState([]);
-  const [needPopup, setNeedPopup] = useState(false);
+    const [needPopup, setNeedPopup] = useState(false);
 
   const showCalendar = async () => {
     setNeedCalendar(true);
@@ -176,7 +176,8 @@ function App() {
             ;
           </div>
         </>
-      )}
+          )};
+          <button >完了</button>
     </>
   );
 }
