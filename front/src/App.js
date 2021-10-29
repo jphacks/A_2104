@@ -84,6 +84,7 @@ function App() {
   const [eventsNum, setEventsNum] = useState(0);
   const [byList, setByList] = useState([]);
   const [needLastCalendar, setNeedLastCalendar] = useState(false);
+  const [isFinish, setIsFinish] = useState(false);
 
   const showCalendar = async () => {
     setViews((prev) => ({
@@ -104,10 +105,16 @@ function App() {
     setSelectEvents(false);
     setNeedCalendar(false);
   };
+  const backtostart = () => {
+    setIsFinish(false);
+    setSelectEvents(false);
+    setNeedCalendar(false);
+    setNeedLastCalendar(false);
+  };
   return (
     <>
       <div>
-        {!selectEvents && !needLastCalendar && !needCalendar && (
+        {!selectEvents && !needLastCalendar && !needCalendar && !isFinish && (
           <div className="form">
             <label>
               <p>予定を生成する日数を入力してください</p>
@@ -126,7 +133,7 @@ function App() {
             </div>
           </div>
         )}
-        {needCalendar && !selectEvents && !needLastCalendar && (
+        {needCalendar && !selectEvents && !needLastCalendar && !isFinish && (
           <div>
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
@@ -142,7 +149,7 @@ function App() {
           </div>
         )}
       </div>
-      {selectEvents && !needLastCalendar && (
+      {selectEvents && !needLastCalendar && !isFinish && (
         <>
           <h1>行動を伴う予定が{eventsNum}件あります</h1>
           <div className="EventList">
@@ -177,19 +184,19 @@ function App() {
           </div>
         </>
       )}
-      {selectEvents && !needLastCalendar && (
+      {selectEvents && !needLastCalendar && !isFinish && (
         <div className="okdiv">
           <button className="ok" onClick={showLastCalendar}>
             完了
           </button>
         </div>
       )}
-      {needLastCalendar && !selectEvents && !needCalendar && (
+      {needLastCalendar && !selectEvents && !needCalendar && !isFinish && (
         <>
-          <div>
+          <div className="lastcalendar header">
             <h1>変更後のカレンダーはこちらです</h1>
           </div>
-          <div>
+          <div className="lastcalendar body">
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
               views={views}
@@ -198,7 +205,17 @@ function App() {
               initialView="agendaView"
             />
           </div>
+          <div className="lastcalendar footer">
+            <p>この予定をGoogleカレンダーに反映させます</p>
+            <button onClick={() => setIsFinish(true)}>反映</button>
+          </div>
         </>
+      )}
+      {isFinish && (
+        <div>
+          <p>変更をGoogleカレンダーに反映させました</p>
+          <button onClick={backtostart}>最初の画面に戻る</button>
+        </div>
       )}
     </>
   );
