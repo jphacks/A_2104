@@ -28,6 +28,16 @@
   color: #61dafb;
 }
 
+.kettei {
+  color: #2073f8;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.tytle h1 {
+  text-align: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

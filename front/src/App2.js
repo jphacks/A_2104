@@ -1,7 +1,8 @@
 import "./App.css";
 import React, { useState, useRef, useEffect } from "react";
 import { fetchCalendarInfo } from "./API";
-import EventCard from "./components/EventCard";
+import EventList from "./components/EventList";
+import Popup from "./components/Popup";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -82,8 +83,6 @@ function App() {
   });
   const [selectEvents, setSelectEvents] = useState(false);
   const [eventsNum, setEventsNum] = useState(0);
-  const [byList, setByList] = useState([]);
-  const [needPopup, setNeedPopup] = useState(false);
 
   const showCalendar = async () => {
     setNeedCalendar(true);
@@ -99,9 +98,7 @@ function App() {
     setEventsNum(events[0].eventnum);
   };
 
-  const openPopup = () => {
-    setNeedPopup(true);
-  };
+  const showTransitions = () => {};
 
   return (
     <>
@@ -124,6 +121,7 @@ function App() {
             locale="ja"
             selectable
             initialView="agendaView"
+            events={events}
           />
           <button type="button" onClick={showEvents}>
             完了
@@ -131,51 +129,10 @@ function App() {
         </>
       )}
       {selectEvents && (
-        <>
+        <div className="tytle">
           <h1>行動を伴う予定が{eventsNum}件あります</h1>
-          <div className="EventList">
-            {events.slice(1).map((event, id) => (
-                <EventCard
-                  time={event.start["dateTime"]}
-                  summary={event.summary}
-                  location={event.location}
-                  callback={openPopup}
-                  key={id}
-                  selectW={() =>
-                    setByList((prev) => [
-                      ...prev,
-                      {
-                        by: "walk",
-                        time: event.start["dateTime"],
-                        summary: event.summary,
-                      },
-                    ])
-                  }
-                  selectC={() =>
-                    setByList((prev) => [
-                      ...prev,
-                      {
-                        by: "car",
-                        time: event.start["dateTime"],
-                        summary: event.summary,
-                      },
-                    ])
-                  }
-                  selectP={() =>
-                    setByList((prev) => [
-                      ...prev,
-                      {
-                        by: "public",
-                        time: event.start["dateTime"],
-                        summary: event.summary,
-                      },
-                    ])
-                  }
-                ></EventCard>
-            ))}
-            ;
-          </div>
-        </>
+          <EventList events={events.slice(1)} />
+        </div>
       )}
     </>
   );
