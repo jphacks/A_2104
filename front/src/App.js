@@ -107,32 +107,35 @@ function App() {
   const showLastCalendar = () => {
     setNeedLastCalendar(true);
     setSelectEvents(false);
+    setNeedCalendar(false);
   };
   return (
     <>
-      {!selectEvents && (
-        <form>
-          <label>
-            予定を生成する日数を入力してください:
-            <input type="number" id="viewNum" ref={inViewNum} />
-          </label>
-          <button type="button" onClick={showCalendar}>
-            決定
-          </button>
-        </form>
-      )}
-      {needCalendar && !selectEvents && (
-        <>
-          <FullCalendar
-            plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
-            views={views}
-            locale="ja"
-            selectable
-            initialView="agendaView"
-          />
-          <button onClick={showEvents}>次へ</button>
-        </>
-      )}
+      <div>
+        {!selectEvents && !needLastCalendar && (
+          <form>
+            <label>
+              予定を生成する日数を入力してください:
+              <input type="number" id="viewNum" ref={inViewNum} />
+            </label>
+            <button type="button" onClick={showCalendar}>
+              決定
+            </button>
+          </form>
+        )}
+        {needCalendar && !selectEvents && !needLastCalendar && (
+          <div>
+            <FullCalendar
+              plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
+              views={views}
+              locale="ja"
+              selectable
+              initialView="agendaView"
+            />
+            <button onClick={showEvents}>次へ</button>
+          </div>
+        )}
+      </div>
       {selectEvents && !needLastCalendar && (
         <>
           <h1>行動を伴う予定が{eventsNum}件あります</h1>
@@ -171,6 +174,16 @@ function App() {
       )}
       {selectEvents && !needLastCalendar && (
         <button onClick={showLastCalendar}>完了</button>
+      )}
+      {needLastCalendar && !selectEvents && !needCalendar && (
+        <>
+          <div>
+            <h1>変更後のカレンダーはこちらです</h1>
+          </div>
+          <div>
+            <p>変更</p>
+          </div>
+        </>
       )}
     </>
   );
