@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "jphacks-330105",
+    "private_key_id": "3fd3f6d606058decb8b25d902fc28f50bf9dbb51",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDyyl0B72wW5W2G\nuchixjNykW9QjFCx1fDT7CpIRPrkpp2DkwUT8kNAawFBCo0kvy7FAITKfW5LqIYJ\n/E5uFPeO8dUS2hcwnfBf0p1Tpx7PoWhaAUlQqf63amkq4ODMw2JcbSjWZ4KIZlcU\nOhPGJzquMV5vEqYkG97OrOaelJyMkxmBtJ21O4/aGlFO+VzKbybjGdDZS73CN8dK\nd2ayIlq1NDU+qMEpmQu3A8lya1/w9l4wciDIB5a9zsXe+YCXPm/cJp4JU2WgTi11\nJYve2nagjdOT7xxjLhtzXnSTUMscjqjAwuz4t95LywIqbLYILQdhLXuQQNmJDC0T\nD188+vO3AgMBAAECggEAEyoYRr+HqGED91P+QzAcJIMVWcxrNc/9rZ5UXuMCOOU4\nxSEbdmeAZnsFaZ7Nfr6QKjqJwNM/NXEM4rt/OpI+HkYf7wtQmrGE2IavJq8oFlr9\nYGL+NTdN8cI2oSaIdOR66z4uMIpehw/1xK6qG+r1AOxifpSZ965MtPZFHlrI5qsy\nEkRDsxOYTjggBRp9wt7+Gv0tY2BnCAd0RKgdQyVHkGNasRBLM0TcAvGSoxVOjCKi\nTj0qDmCmmF3Q/L6Hz02nqCttA+XRIDjwADTZKWcW63ZluB0VVh4pRPOtiFWTNuDq\njh7hywLKmdqvtbPreUo4DqUXCYjDULCKSmlInsY6GQKBgQD9r7OVqF9kxmvYq4xz\nsPLllEG1S/l+qhaDMPlFrzLREmpcEHSR/WuKXSMIeghPVGEFNAkAKC9gy/tSATN9\nOCWQ+7nH1rcqNX5ZIxAew1YH6MTpGE7lD7+ZVKuEzwolvwcTw0PV8Af7DnHjbQtx\nqIRMJrcr9St83jZGasAycHLVGQKBgQD1ATj3z8TWDY751kcI/Z3gqUby//pGAESk\n7MMxFjVuqYmdk+ZePIAf2N8lfCnB+FuGdfEWbtjt/C2Uh46H578oc863o3GHX14L\nFeFv3cewWD1ooQwwVpvdEOjc84QB1CcgK4Cg2tzzIKlJFMgyHhWk+xyfPRuqBb61\nIOjotlHZTwKBgQCy7YostGUUHx9R4y1dLCEl7DusM7n1rOHUBmbKz5d3/xUlejW+\nApAnNynOgMP7r/f+Q4VVpwJDs5u/azl1yHQ2nlWarcbi7nf/RsvH5t53FaZNAegj\nh8gLzbxsH9t4ZBQJzF+8NWBrovSRBAheUg196JCpYHMbz19Yq1KEQOu9gQKBgQDL\nfk1zvnTtmOtU5T2w4P1dWRvdvvB/bb+WADSLM7gDhvsPD4W6ZaPBT97fgoYoXoCe\naJ1qlXzGBbtR71lZ1gk2ryFV84Ha/0HcETtiL6Go/VFb8s9t4rGoZmATDItq/WvV\n02wNrlrv8QPJ+GHjBovRsOPv+tBcYlMonAH3L19CDwKBgHFxx6hgrhQKsjTXh6JV\n7k2aoFioZ3TcKf3bwa0+inZRDdL1pEt12tcDO2eds0UpgAFLAceCIXFLEw4zqDrW\njQ2acJVwQCHdicqEpo95UHxJOLIFwgeSVseUtVE7Ae/y1PxZoRBxx/zmGNICI128\nUAClM/Y4t25SkIsoN8s1kBWM\n-----END PRIVATE KEY-----\n",
+    "client_email": "jphaks-api@jphacks-330105.iam.gserviceaccount.com",
+    "client_id": "111083433059287696028",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/jphaks-api%40jphacks-330105.iam.gserviceaccount.com"
+  }
+  
