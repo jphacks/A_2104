@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useRef } from "react";
-import { fetchCalendarInfo, fetchLastCalendar } from "./API";
+import { fetchCalendarInfo, fetchLastCalendar, applyOutput } from "./API";
 import EventCard from "./components/EventCard";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -49,6 +49,12 @@ function App() {
     setSelectEvents(false);
     setNeedCalendar(false);
   };
+
+  const apply = async () => {
+    const finishStatus = await applyOutput(result);
+    setIsFinish(true);
+  };
+
   const backtostart = () => {
     setIsFinish(false);
     setSelectEvents(false);
@@ -156,7 +162,7 @@ function App() {
           </div>
           <div className="lastcalendar footer">
             <p>この予定をGoogleカレンダーに反映させます</p>
-            <button onClick={() => setIsFinish(true)}>反映</button>
+            <button onClick={apply}>反映</button>
           </div>
         </>
       )}
