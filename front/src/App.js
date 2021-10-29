@@ -164,16 +164,6 @@ function App() {
                     },
                   ])
                 }
-                selectP={() =>
-                  setByList((prev) => [
-                    ...prev,
-                    {
-                      by: "public",
-                      time: event.start["dateTime"],
-                      summary: event.summary,
-                    },
-                  ])
-                }
               ></EventCard>
             ))}
           </div>
