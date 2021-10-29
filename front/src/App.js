@@ -71,7 +71,7 @@ function App() {
       eventType: "default",
     },
   ];
-
+  const [data, setData] = useState();
   const [needCalendar, setNeedCalendar] = useState(false);
   const inViewNum = useRef(null);
   const [views, setViews] = useState({
@@ -88,12 +88,13 @@ function App() {
 
   const showCalendar = async () => {
     setNeedCalendar(true);
+
     setViews((prev) => ({
       ...prev,
       agendaView: { ...prev.agendaView, dayCount: inViewNum.current.value },
     }));
-    /*const events = await fetchCalendarInfo(inViewNum.current.value);
-        console.log(events);*/
+    /*setData(await fetchCalendarInfo(inViewNum.current.value));*/
+    console.log(data);
   };
   const showEvents = () => {
     setSelectEvents(true);
@@ -107,32 +108,38 @@ function App() {
   const showLastCalendar = () => {
     setNeedLastCalendar(true);
     setSelectEvents(false);
+    setNeedCalendar(false);
   };
   return (
     <>
-      {!selectEvents && (
-        <form>
-          <label>
-            予定を生成する日数を入力してください:
-            <input type="number" id="viewNum" ref={inViewNum} />
-          </label>
-          <button type="button" onClick={showCalendar}>
-            決定
-          </button>
-        </form>
-      )}
-      {needCalendar && !selectEvents && (
-        <>
-          <FullCalendar
-            plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
-            views={views}
-            locale="ja"
-            selectable
-            initialView="agendaView"
-          />
-          <button onClick={showEvents}>次へ</button>
-        </>
-      )}
+      <div>
+        {!selectEvents && !needLastCalendar && !needCalendar&& (
+          <div className="form">
+            <label>
+              <p>予定を生成する日数を入力してください</p>
+            
+              <input className="inp" type="number" id="viewNum" ref={inViewNum} />
+            </label>
+            <div>
+              <button  className="btn2" onClick={showCalendar}>
+              OK
+              </button>
+            </div>
+          </div>
+        )}
+        {needCalendar && !selectEvents && !needLastCalendar && (
+          <div>
+            <FullCalendar
+              plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
+              views={views}
+              locale="ja"
+              selectable
+              initialView="agendaView"
+            />
+            <button className="btn2" onClick={showEvents}>NEXT</button>
+          </div>
+        )}
+      </div>
       {selectEvents && !needLastCalendar && (
         <>
           <h1>行動を伴う予定が{eventsNum}件あります</h1>
@@ -173,6 +180,22 @@ function App() {
         <div className="okdiv">
           <button className='ok' onClick={showLastCalendar}>完了</button>
         </div>
+      )}
+      {needLastCalendar && !selectEvents && !needCalendar && (
+        <>
+          <div>
+            <h1>変更後のカレンダーはこちらです</h1>
+          </div>
+          <div>
+            <FullCalendar
+              plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
+              views={views}
+              locale="ja"
+              selectable
+              initialView="agendaView"
+            />
+          </div>
+        </>
       )}
     </>
   );

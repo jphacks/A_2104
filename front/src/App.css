@@ -47,6 +47,59 @@
   }
 }
 
+.form p{
+  display: table;
+  margin: 0 auto;
+  margin-top: 200px;
+  font-size: 60px;
+  color:rgba(35, 151, 246, 0.746)
+}
+
+.inp{
+  font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 10%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	color: #aaaaaa;
+	border: none;
+	border-bottom: 2px solid #1b2538;
+	background: transparent;
+
+  margin-top: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  outline: none;
+}
+
+.btn2 {
+  display: block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+
+  height: 100px;
+  width: 200px;
+  margin:40px;
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 40px;
+}
+
+.btn2:active {
+  /*押したとき*/
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);/*沈むように*/
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  background-image: linear-gradient(#62bcf8 0%, #4ac8fa 100%);/*グラデーションを明るく*/
+}
+
 .ok {
     padding: 0.3em 1em;
     text-decoration: none;
