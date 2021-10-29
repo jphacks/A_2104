@@ -2,7 +2,7 @@
     padding: 0.5em 1em;
     margin: 1em 0;
     background: #f5f5f5;
-    border-left: solid 6px #8bcefa;
+    border-left: solid 6px #58b8f8;
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.33);
 
     margin: 40px;
@@ -23,27 +23,92 @@
     border-radius:30px;
 }
 
-.button {
-    border-radius: 50px;
-}
-
 .btn {
+    float: right;
     display: inline-block;
-    position: relative;
-    color: #47a6f5;
-    width: 120px;
-    height: 120px;
-    line-height: 50px;
-    border-radius: 50px;
-    text-align: center;
-    font-weight: bold;
-    background: #4a9fee;
-    background-image: linear-gradient(#78c5f8 0%, #6dcff6 100%);
-    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+    padding: 0.3em 1em;
+    text-decoration: none;
+    color: #67c5ff;
+    border: solid 2px #67c5ff;
+    border-radius: 3px;
+    transition: .4s;
+
+    width: 250px;
+    height: 100px;
+    margin-top: 30px;
+    margin-left: 170px;
+    font-size: 40px;
 }
 
 .btn:active {
+    /*押したとき*/
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);/*沈むように*/
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+    background-image: linear-gradient(#62bcf8 0%, #4ac8fa 100%);/*グラデーションを明るく*/
+}
+
+
+.popup {
+    position: relative;
+    margin: 2em 0;
+    padding: 25px 10px 7px;
+    border: solid 2px #11a2e6;
+
+    background: #f5f5f5;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.33);
+    border-radius: 8px;
+
+    margin: 40px;
+    width: 1000px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    clear: both;
+}
+
+.popup .box-title {
+    position: absolute;
+    display: inline-block;
+    top: -2px;
+    left: -2px;
+    padding: 0 9px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 17px;
+    background: #0e9ef1;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.btn-t {
+    display: inline-block;
+    padding: 0.3em 1em;
+    text-decoration: none;
+    color: #67c5ff;
+    border: solid 2px #67c5ff;
+    border-radius: 3px;
+    transition: .4s;
+
+    width: 250px;
+    height: 100px;
+    margin-top: 30px;
+    margin-left: 170px;
+    font-size: 40px;
+}
+
+.btn-t:hover {
+    background: #67c5ff;
+    color: white;
+}
+
+.btn-t:hover:before {
+    top: -webkit-calc(100% - 3px);
+    top: calc(100% - 3px);
+}
+
+.btn-t:active {
     /*押したとき*/
     -webkit-transform: translateY(2px);
     transform: translateY(2px);/*沈むように*/

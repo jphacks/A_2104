@@ -170,7 +170,9 @@ function App() {
         </>
       )}
       {selectEvents && !needLastCalendar && (
-        <button onClick={showLastCalendar}>完了</button>
+        <div className="okdiv">
+          <button className='ok' onClick={showLastCalendar}>完了</button>
+        </div>
       )}
     </>
   );

@@ -7,7 +7,7 @@ const style_box = {
   alignItems: "center",
 };
 
-const EventCard = ({ time, summary, location, selectW, selectC, selectP }) => {
+const EventCard = ({ time, summary, location, selectW, selectC }) => {
   const [showEvent, setShowEvent] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const viewChange = () => {
@@ -19,29 +19,28 @@ const EventCard = ({ time, summary, location, selectW, selectC, selectP }) => {
     setShowPopup(false);
   };
 
-  const Popup = ({ selectW, selectC, selectP }) => {
+  const Popup = ({ selectW, selectC }) => {
     return (
       <div className="popup">
-        <div className="transportation">
-          <button
-            className="btn-walk"
-            onClick={() => {
-              selectW();
-              inVisible();
-            }}
-          >
-            徒歩
-          </button>
-          <button
-            className="btn-car"
-            onClick={() => {
-              selectC();
-              inVisible();
-            }}
-          >
-            自家用車
-          </button>
-        </div>
+        <span class="box-title">移動手段の選択</span>
+        <button
+          className="btn-t"
+          onClick={() => {
+            selectW();
+            inVisible();
+          }}
+        >
+          徒歩
+        </button>
+        <button
+          className="btn-t"
+          onClick={() => {
+            selectC();
+            inVisible();
+          }}
+        >
+          自家用車
+        </button>
       </div>
     );
   };
@@ -61,18 +60,15 @@ const EventCard = ({ time, summary, location, selectW, selectC, selectP }) => {
               <p>場所：{location}</p>
             </div>
           </label>
-          <span className="button">
-            <Button className="btn" onClick={viewChange}>
+          <button className="btn" onClick={viewChange}>
               Select
-            </Button>
-          </span>
+          </button>
         </div>
       )}
       {showPopup && (
         <Popup
           selectW={selectW}
           selectC={selectC}
-          selectP={selectP}
           inVisible={inVisible}
         ></Popup>
       )}

@@ -46,3 +46,27 @@
     transform: rotate(360deg);
   }
 }
+
+.ok {
+    padding: 0.3em 1em;
+    text-decoration: none;
+    color: #67c5ff;
+    border: solid 2px #67c5ff;
+    border-radius: 3px;
+    transition: .4s;
+
+    display: block;
+    width: 250px;
+    height: 100px;
+    font-size: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ok:active {
+  /*押したとき*/
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);/*沈むように*/
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  background-image: linear-gradient(#62bcf8 0%, #4ac8fa 100%);/*グラデーションを明るく*/
+}
