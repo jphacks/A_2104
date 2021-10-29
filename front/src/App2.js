@@ -15,6 +15,10 @@ function App() {
     agendaView: {
       type: "timeGrid",
       buttonText: "3 day",
+      allDaySlot: false,
+      slotDuration: '00:30:00',
+      nowIndicator: true,
+      stickyHeaderDates: false,
     },
   });
   const [selectEvents, setSelectEvents] = useState(false);
@@ -47,15 +51,29 @@ function App() {
     color: "#fff",
     background: "#2073f8",
     transform: 'translate(0%, 50%)',
+    fontSize: 25,
+    root: {
+        justifyContent: 'center'
+    }
+  };
+  const style_button2 = {
+    minWidth: 164,       // 数値は"64px"のように、pxとして扱われます
+    lineHeight: "64px",
+    borderRadius: 32,
+    border: "none",
+    padding: "16 16px",
+    color: "#fff",
+    background: "#2073f8",
+    transform: 'translate(500%, 50%)',
+    fontSize: 25,
     root: {
         justifyContent: 'center'
     }
   };
 
-
   return (
     <>
-      {!selectEvents && (
+      {!selectEvents && !needCalendar && (
         <CardActions style={style_start}>
           <div>
           <form className='kettei'>
@@ -65,7 +83,7 @@ function App() {
           </form>
           </div>
           <div>
-            <TextField variant="standard" style={style_input} type="number" id="viewNum" ref={inViewNum} />
+            <TextField variant="standard" style={style_input} type="number" id="viewNum" inputRef={inViewNum} />
           </div>
           <div>
           <Button style={style_button} onClick={handleClick}>
@@ -83,7 +101,7 @@ function App() {
             selectable
             initialView="agendaView"
           />
-          <Button variant="outlined" color="black" onClick={() => setSelectEvents(true)}>
+          <Button style={style_button2} variant="outlined" color="black" onClick={() => setSelectEvents(true)}>
             完了
           </Button>
         </>
