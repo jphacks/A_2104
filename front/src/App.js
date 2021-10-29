@@ -8,7 +8,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 
 function App() {
-  /*const events = [
+  const events = [
     { eventnum: 3 },
     {
       kind: "calendar#event",
@@ -70,7 +70,7 @@ function App() {
       reminders: { useDefault: true },
       eventType: "default",
     },
-  ];*/
+  ];
   const [data, setData] = useState();
   const [needCalendar, setNeedCalendar] = useState(false);
   const inViewNum = useRef(null);
@@ -97,7 +97,7 @@ function App() {
   };
   const showEvents = () => {
     setSelectEvents(true);
-    setEventsNum(data[0].eventnum);
+    setEventsNum(events[0].eventnum);
   };
 
   const openPopup = () => {
@@ -113,15 +113,23 @@ function App() {
     <>
       <div>
         {!selectEvents && !needLastCalendar && !needCalendar && (
-          <form>
+          <div className="form">
             <label>
-              予定を生成する日数を入力してください:
-              <input type="number" id="viewNum" ref={inViewNum} />
+              <p>予定を生成する日数を入力してください</p>
+
+              <input
+                className="inp"
+                type="number"
+                id="viewNum"
+                ref={inViewNum}
+              />
             </label>
-            <button type="button" onClick={showCalendar}>
-              決定
-            </button>
-          </form>
+            <div>
+              <button className="btn2" onClick={showCalendar}>
+                OK
+              </button>
+            </div>
+          </div>
         )}
         {needCalendar && !selectEvents && !needLastCalendar && (
           <div>
@@ -132,7 +140,9 @@ function App() {
               selectable
               initialView="agendaView"
             />
-            <button onClick={showEvents}>次へ</button>
+            <button className="btn2" onClick={showEvents}>
+              NEXT
+            </button>
           </div>
         )}
       </div>
@@ -140,7 +150,7 @@ function App() {
         <>
           <h1>行動を伴う予定が{eventsNum}件あります</h1>
           <div className="EventList">
-            {data.slice(1).map((event, id) => (
+            {events.slice(1).map((event, id) => (
               <EventCard
                 time={event.start["dateTime"]}
                 summary={event.summary}
@@ -173,7 +183,11 @@ function App() {
         </>
       )}
       {selectEvents && !needLastCalendar && (
-        <button onClick={showLastCalendar}>完了</button>
+        <div className="okdiv">
+          <button className="ok" onClick={showLastCalendar}>
+            完了
+          </button>
+        </div>
       )}
       {needLastCalendar && !selectEvents && !needCalendar && (
         <>
