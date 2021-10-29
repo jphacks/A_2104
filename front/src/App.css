@@ -34,6 +34,10 @@
   flex-direction: column;
 }
 
+.tytle h1 {
+  text-align: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

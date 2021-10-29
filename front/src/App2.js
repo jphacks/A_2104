@@ -1,96 +1,117 @@
 import "./App.css";
 import React, { useState, useRef, useEffect } from "react";
+import { fetchCalendarInfo } from "./API";
+import EventList from "./components/EventList";
+import Popup from "./components/Popup";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import Button from '@material-ui/core/Button';
-import CardActions from '@material-ui/core/CardActions';
-import TextField from '@material-ui/core/TextField'
 
 function App() {
+  const events = [
+    { eventnum: 3 },
+    {
+      kind: "calendar#event",
+      etag: '"3270265666396000"',
+      id: "42k0afo45u5n7tehav40m80qul",
+      status: "confirmed",
+      htmlLink:
+        "https://www.google.com/calendar/event?eid=NDJrMGFmbzQ1dTVuN3RlaGF2NDBtODBxdWwgd2l3aWpvaG5zb25AbQ",
+      created: "2021-10-25T03:33:53.000Z",
+      updated: "2021-10-25T03:33:53.198Z",
+      summary: "お寝んねする",
+      creator: { email: "wiwijohnson@gmail.com", self: true },
+      organizer: { email: "wiwijohnson@gmail.com", self: true },
+      start: { dateTime: "2021-10-27T21:00:00+09:00", timeZone: "Asia/Tokyo" },
+      end: { dateTime: "2021-10-27T22:00:00+09:00", timeZone: "Asia/Tokyo" },
+      iCalUID: "42k0afo45u5n7tehav40m80qul@google.com",
+      sequence: 0,
+      reminders: { useDefault: true },
+      eventType: "default",
+    },
+    {
+      kind: "calendar#event",
+      etag: '"3270281670420000"',
+      id: "0iivs2dlcr7slscpt03t899o3g",
+      status: "confirmed",
+      htmlLink:
+        "https://www.google.com/calendar/event?eid=MGlpdnMyZGxjcjdzbHNjcHQwM3Q4OTlvM2cgd2l3aWpvaG5zb25AbQ",
+      created: "2021-10-25T04:57:11.000Z",
+      updated: "2021-10-25T05:47:15.210Z",
+      summary: "勉強をしたいです",
+      location: "東北大学, 日本、〒980-8577 宮城県仙台市青葉区片平２丁目１−１",
+      creator: { email: "wiwijohnson@gmail.com", self: true },
+      organizer: { email: "wiwijohnson@gmail.com", self: true },
+      start: { dateTime: "2021-10-28T14:30:00+09:00", timeZone: "Asia/Tokyo" },
+      end: { dateTime: "2021-10-28T15:30:00+09:00", timeZone: "Asia/Tokyo" },
+      iCalUID: "0iivs2dlcr7slscpt03t899o3g@google.com",
+      sequence: 0,
+      reminders: { useDefault: true },
+      eventType: "default",
+    },
+    {
+      kind: "calendar#event",
+      etag: '"3270281775166000"',
+      id: "561to8bb1v14ld3acfjf90o1sv",
+      status: "confirmed",
+      htmlLink:
+        "https://www.google.com/calendar/event?eid=NTYxdG84YmIxdjE0bGQzYWNmamY5MG8xc3Ygd2l3aWpvaG5zb25AbQ",
+      created: "2021-10-25T04:57:25.000Z",
+      updated: "2021-10-25T05:48:07.583Z",
+      summary: "スポンジボブ",
+      location:
+        "仙台駅, 日本、〒980-0021 宮城県仙台市青葉区中央１丁目１０−１０",
+      creator: { email: "wiwijohnson@gmail.com", self: true },
+      organizer: { email: "wiwijohnson@gmail.com", self: true },
+      start: { dateTime: "2021-10-29T09:00:00+09:00", timeZone: "Asia/Tokyo" },
+      end: { dateTime: "2021-10-29T10:00:00+09:00", timeZone: "Asia/Tokyo" },
+      iCalUID: "561to8bb1v14ld3acfjf90o1sv@google.com",
+      sequence: 0,
+      reminders: { useDefault: true },
+      eventType: "default",
+    },
+  ];
+
   const [needCalendar, setNeedCalendar] = useState(false);
   const inViewNum = useRef(null);
   const [views, setViews] = useState({
     agendaView: {
       type: "timeGrid",
       buttonText: "3 day",
-      allDaySlot: false,
-      slotDuration: '00:30:00',
-      nowIndicator: true,
-      stickyHeaderDates: false,
     },
   });
   const [selectEvents, setSelectEvents] = useState(false);
-  const handleClick = () => {
+  const [eventsNum, setEventsNum] = useState(0);
+
+  const showCalendar = async () => {
     setNeedCalendar(true);
     setViews((prev) => ({
       ...prev,
       agendaView: { ...prev.agendaView, dayCount: inViewNum.current.value },
     }));
+    /*const events = await fetchCalendarInfo(inViewNum.current.value);
+        console.log(events);*/
   };
-  const style_start = {
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    transform: 'translate(0%, 120%)'
+  const showEvents = () => {
+    setSelectEvents(true);
+    setEventsNum(events[0].eventnum);
   };
-  const style_str = {
-    fontSize: 60,
-    transform: 'translate(0%, -20%)',
-  };
-  const style_input = {
-    lineHeight: "64px"
-  };
-  const style_button = {
-    minWidth: 164,       // 数値は"64px"のように、pxとして扱われます
-    lineHeight: "64px",
-    borderRadius: 32,
-    border: "none",
-    padding: "16 16px",
-    color: "#fff",
-    background: "#2073f8",
-    transform: 'translate(0%, 50%)',
-    fontSize: 25,
-    root: {
-        justifyContent: 'center'
-    }
-  };
-  const style_button2 = {
-    minWidth: 164,       // 数値は"64px"のように、pxとして扱われます
-    lineHeight: "64px",
-    borderRadius: 32,
-    border: "none",
-    padding: "16 16px",
-    color: "#fff",
-    background: "#2073f8",
-    transform: 'translate(500%, 50%)',
-    fontSize: 25,
-    root: {
-        justifyContent: 'center'
-    }
-  };
+
+  const showTransitions = () => {};
 
   return (
     <>
-      {!selectEvents && !needCalendar && (
-        <CardActions style={style_start}>
-          <div>
-          <form className='kettei'>
-            <label style={style_str}>
-            予定を生成する日数を入力してください
-            </label>
-          </form>
-          </div>
-          <div>
-            <TextField variant="standard" style={style_input} type="number" id="viewNum" inputRef={inViewNum} />
-          </div>
-          <div>
-          <Button style={style_button} onClick={handleClick}>
+      {!selectEvents && (
+        <form>
+          <label>
+            予定を生成する日数を入力してください:
+            <input type="number" id="viewNum" ref={inViewNum} />
+          </label>
+          <button type="button" onClick={showCalendar}>
             決定
-          </Button>
-          </div>
-        </CardActions>
+          </button>
+        </form>
       )}
       {needCalendar && !selectEvents && (
         <>
@@ -100,16 +121,18 @@ function App() {
             locale="ja"
             selectable
             initialView="agendaView"
+            events={events}
           />
-          <Button style={style_button2} variant="outlined" color="black" onClick={() => setSelectEvents(true)}>
+          <button type="button" onClick={showEvents}>
             完了
-          </Button>
+          </button>
         </>
       )}
       {selectEvents && (
-        <>
-          <h1>行動を伴う予定が三件あります</h1>
-        </>
+        <div className="tytle">
+          <h1>行動を伴う予定が{eventsNum}件あります</h1>
+          <EventList events={events.slice(1)} />
+        </div>
       )}
     </>
   );
