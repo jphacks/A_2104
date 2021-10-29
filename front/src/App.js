@@ -84,6 +84,7 @@ function App() {
   const [eventsNum, setEventsNum] = useState(0);
   const [byList, setByList] = useState([]);
   const [needPopup, setNeedPopup] = useState(false);
+  const [needLastCalendar, setNeedLastCalendar] = useState(false);
 
   const showCalendar = async () => {
     setNeedCalendar(true);
@@ -103,6 +104,10 @@ function App() {
     setNeedPopup(true);
   };
 
+  const showLastCalendar = () => {
+    setNeedLastCalendar(true);
+    setSelectEvents(false);
+  };
   return (
     <>
       {!selectEvents && (
@@ -125,57 +130,57 @@ function App() {
             selectable
             initialView="agendaView"
           />
-          <button type="button" onClick={showEvents}>
-            完了
-          </button>
+          <button onClick={showEvents}>次へ</button>
         </>
       )}
-      {selectEvents && (
+      {selectEvents && !needLastCalendar && (
         <>
           <h1>行動を伴う予定が{eventsNum}件あります</h1>
           <div className="EventList">
             {events.slice(1).map((event, id) => (
-                <EventCard
-                  time={event.start["dateTime"]}
-                  summary={event.summary}
-                  location={event.location}
-                  callback={openPopup}
-                  key={id}
-                  selectW={() =>
-                    setByList((prev) => [
-                      ...prev,
-                      {
-                        by: "walk",
-                        time: event.start["dateTime"],
-                        summary: event.summary,
-                      },
-                    ])
-                  }
-                  selectC={() =>
-                    setByList((prev) => [
-                      ...prev,
-                      {
-                        by: "car",
-                        time: event.start["dateTime"],
-                        summary: event.summary,
-                      },
-                    ])
-                  }
-                  selectP={() =>
-                    setByList((prev) => [
-                      ...prev,
-                      {
-                        by: "public",
-                        time: event.start["dateTime"],
-                        summary: event.summary,
-                      },
-                    ])
-                  }
-                ></EventCard>
+              <EventCard
+                time={event.start["dateTime"]}
+                summary={event.summary}
+                location={event.location}
+                callback={openPopup}
+                key={id}
+                selectW={() =>
+                  setByList((prev) => [
+                    ...prev,
+                    {
+                      by: "walk",
+                      time: event.start["dateTime"],
+                      summary: event.summary,
+                    },
+                  ])
+                }
+                selectC={() =>
+                  setByList((prev) => [
+                    ...prev,
+                    {
+                      by: "car",
+                      time: event.start["dateTime"],
+                      summary: event.summary,
+                    },
+                  ])
+                }
+                selectP={() =>
+                  setByList((prev) => [
+                    ...prev,
+                    {
+                      by: "public",
+                      time: event.start["dateTime"],
+                      summary: event.summary,
+                    },
+                  ])
+                }
+              ></EventCard>
             ))}
-            ;
           </div>
         </>
+      )}
+      {selectEvents && !needLastCalendar && (
+        <button onClick={showLastCalendar}>完了</button>
       )}
     </>
   );
