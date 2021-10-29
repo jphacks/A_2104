@@ -7,7 +7,7 @@ const style_box = {
   alignItems: "center",
 };
 
-const EventCard = ({ time, summary, location, selectW, selectC, selectP }) => {
+const EventCard = ({ time, summary, location, selectW, selectC}) => {
   const [showEvent, setShowEvent] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const viewChange = () => {
@@ -19,7 +19,7 @@ const EventCard = ({ time, summary, location, selectW, selectC, selectP }) => {
     setShowPopup(false);
   };
 
-  const Popup = ({ selectW, selectC, selectP }) => {
+  const Popup = ({ selectW, selectC}) => {
     return (
       <div className="popup">
         <div className="transportation">
@@ -72,7 +72,6 @@ const EventCard = ({ time, summary, location, selectW, selectC, selectP }) => {
         <Popup
           selectW={selectW}
           selectC={selectC}
-          selectP={selectP}
           inVisible={inVisible}
         ></Popup>
       )}
