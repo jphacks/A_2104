@@ -94,12 +94,12 @@ function App() {
     setData(JSON.parse(data));
     console.log(JSON.parse(data)[0][0]);
     setNeedCalendar(true);
+
   };
   const showEvents = () => {
     setSelectEvents(true);
-    setEventsNum(events[0].eventnum);
-  };
-
+      setEventsNum(events[0].eventnum);
+      
   const showLastCalendar = () => {
     setNeedLastCalendar(true);
     setSelectEvents(false);
