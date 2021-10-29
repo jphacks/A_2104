@@ -61,7 +61,7 @@ const EventCard = ({ time, summary, location, selectW, selectC }) => {
             </div>
           </label>
           <button className="btn" onClick={viewChange}>
-              Select
+            Select
           </button>
         </div>
       )}
