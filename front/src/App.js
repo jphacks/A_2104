@@ -8,7 +8,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 
 function App() {
-  const events = [
+  /*const events = [
     { eventnum: 3 },
     {
       kind: "calendar#event",
@@ -70,8 +70,8 @@ function App() {
       reminders: { useDefault: true },
       eventType: "default",
     },
-  ];
-
+  ];*/
+  const [data, setData] = useState();
   const [needCalendar, setNeedCalendar] = useState(false);
   const inViewNum = useRef(null);
   const [views, setViews] = useState({
@@ -92,12 +92,12 @@ function App() {
       ...prev,
       agendaView: { ...prev.agendaView, dayCount: inViewNum.current.value },
     }));
-    /*const events = await fetchCalendarInfo(inViewNum.current.value);
-        console.log(events);*/
+    setData(await fetchCalendarInfo(inViewNum.current.value));
+    console.log(data);
   };
   const showEvents = () => {
     setSelectEvents(true);
-    setEventsNum(events[0].eventnum);
+    setEventsNum(data[0].eventnum);
   };
 
   const openPopup = () => {
@@ -140,7 +140,7 @@ function App() {
         <>
           <h1>行動を伴う予定が{eventsNum}件あります</h1>
           <div className="EventList">
-            {events.slice(1).map((event, id) => (
+            {data.slice(1).map((event, id) => (
               <EventCard
                 time={event.start["dateTime"]}
                 summary={event.summary}
@@ -181,7 +181,13 @@ function App() {
             <h1>変更後のカレンダーはこちらです</h1>
           </div>
           <div>
-            <p>変更</p>
+            <FullCalendar
+              plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
+              views={views}
+              locale="ja"
+              selectable
+              initialView="agendaView"
+            />
           </div>
         </>
       )}
