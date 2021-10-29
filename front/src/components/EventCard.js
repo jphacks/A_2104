@@ -23,19 +23,34 @@ const EventCard = ({ time, summary, location, selectW, selectC, selectP }) => {
     return (
       <div className="popup">
         <div className="transportation">
-          <button className="btn-walk" onClick={selectW}>
+          <button
+            className="btn-walk"
+            onClick={() => {
+              selectW();
+              inVisible();
+            }}
+          >
             徒歩
           </button>
-          <button className="btn-car" onClick={selectC}>
+          <button
+            className="btn-car"
+            onClick={() => {
+              selectC();
+              inVisible();
+            }}
+          >
             自家用車
           </button>
-          <button className="btn-public" onClick={selectP}>
+          <button
+            className="btn-public"
+            onClick={() => {
+              selectP();
+              inVisible();
+            }}
+          >
             公共交通機関
           </button>
         </div>
-        <button className="btn-close" onClick={inVisible}>
-          完了
-        </button>
       </div>
     );
   };
