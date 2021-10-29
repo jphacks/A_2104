@@ -104,7 +104,7 @@ function App() {
                   setResult((prev) => [
                     ...prev,
                     {
-                      by: "walk",
+                      mode: "walking",
                       start: event.start,
                       end: event.end,
                       summary: event.summary,
@@ -116,7 +116,7 @@ function App() {
                   setResult((prev) => [
                     ...prev,
                     {
-                      by: "car",
+                      mode: "driving",
                       start: event.start,
                       end: event.end,
                       summary: event.summary,
