@@ -38,15 +38,15 @@ function App() {
     setEventsNum(data[1].length);
   };
   const showLastCalendar = async () => {
-    const output = await fetchLastCalendar(result);
-    setOutput(JSON.parse(output));
+      const output = await fetchLastCalendar(result);
+      setOutput(JSON.parse(output));
     setNeedLastCalendar(true);
     setSelectEvents(false);
     setNeedCalendar(false);
   };
 
-  const apply = async () => {
-    const finishStatus = await applyOutput(result[1]);
+    const apply = async () => {
+    const finishStatus = await applyOutput(output[1]);
     setIsFinish(true);
   };
 

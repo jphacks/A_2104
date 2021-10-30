@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Popup from "./Popup";
 import "./EventCard.css";
 
 const style_box = {
@@ -8,8 +9,8 @@ const style_box = {
 
 const EventCard = ({ time, title, location, selectW, selectC }) => {
   const [showEvent, setShowEvent] = useState(true);
-    const [showPopup, setShowPopup] = useState(false);
-    
+  const [showPopup, setShowPopup] = useState(false);
+
   const viewChange = () => {
     setShowEvent(false);
     setShowPopup(true);
@@ -17,32 +18,6 @@ const EventCard = ({ time, title, location, selectW, selectC }) => {
   const inVisible = () => {
     setShowEvent(true);
     setShowPopup(false);
-  };
-
-  const Popup = ({ selectW, selectC }) => {
-    return (
-      <div className="popup">
-        <span className="box-title">移動手段の選択</span>
-        <button
-          className="btn-t"
-          onClick={() => {
-            selectW();
-            inVisible();
-          }}
-        >
-          徒歩
-        </button>
-        <button
-          className="btn-t"
-          onClick={() => {
-            selectC();
-            inVisible();
-          }}
-        >
-          自家用車
-        </button>
-      </div>
-    );
   };
 
   return (
