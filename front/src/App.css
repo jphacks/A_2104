@@ -54,6 +54,10 @@
   ); /*グラデーションを明るく*/
 }
 
+.origin_calendar {
+  font-size: 20px;
+}
+
 .ok {
   padding: 0.3em 1em;
   text-decoration: none;

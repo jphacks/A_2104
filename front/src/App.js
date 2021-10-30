@@ -117,7 +117,7 @@ function App() {
             </div>
           )}
         {needCalendar && !selectEvents && !needLastCalendar && !isFinish && (
-          <div>
+          <div className="origin_calendar">
             <h1>今日から{inViewNum}日後までの予定は以下の通りです</h1>
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
@@ -181,10 +181,10 @@ function App() {
       )}
       {needLastCalendar && !selectEvents && !needCalendar && !isFinish && (
         <>
-          <div className="lastcalendar header">
+          <div>
             <h1>変更後のカレンダーはこちらです</h1>
           </div>
-          <div className="lastcalendar_body">
+          <div className="origin_calendar">
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
               views={views}
