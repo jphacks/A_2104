@@ -62,21 +62,34 @@ def cal_parser(cals):
     for i in range(len(cals)):
         in_dict = {}
         
-        in_dict["summary"]=cals[i]["summary"]
+        in_dict["title"]=cals[i]["summary"]
         in_dict["location"]=cals[i].get("location")
+        
+        if in_dict["location"] is not None:
+            in_dict["backgroundColor"] = "#0099FF"
+        else:
+            in_dict["backgroundColor"] = "#66CCCC"
+        
         in_dict["start"]=cals[i]["start"]["dateTime"]
         in_dict["end"]=cals[i]["end"]["dateTime"]
+        
+        if in_dict["title"] == "移動":
+            in_dict["backgroundColor"] = "red"
         
         ret.append(in_dict)
     
     return ret
 
 def cal_validate(cals):
+    to_pop = []
     cals_ = cals.copy()
     for i in range(len(cals)):
-        location = cals_[i]["location"]
+        location = cals[i]["location"]
         if (location == None) or (location == "自宅") or (location == "オンライン"):
-            cals_.pop(i)
+            to_pop.append(i)
+    
+    for i in sorted(to_pop, reverse=True):
+        cals_.pop(i)
     
     return cals_
 
