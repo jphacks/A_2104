@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { fetchCalendarInfo, fetchLastCalendar, applyOutput } from "./API";
 import EventCard from "./components/EventCard";
 import FullCalendar from "@fullcalendar/react";
@@ -16,7 +16,6 @@ function App() {
   const [views, setViews] = useState({
     agendaView: {
       type: "timeGrid",
-      buttonText: "3 day",
     },
   });
   const [selectEvents, setSelectEvents] = useState(false);
@@ -31,15 +30,16 @@ function App() {
       ...prev,
       agendaView: { ...prev.agendaView, dayCount: inViewNum },
     }));
-    console.log(address);
     const data = await fetchCalendarInfo(inViewNum, address);
     setData(JSON.parse(data));
     setNeedCalendar(true);
   };
+
   const showEvents = () => {
     setSelectEvents(true);
     setEventsNum(data[1].length);
   };
+
   const showLastCalendar = async () => {
     const output = await fetchLastCalendar(result);
     setOutput(JSON.parse(output));
@@ -59,6 +59,7 @@ function App() {
     setNeedCalendar(false);
     setNeedLastCalendar(false);
   };
+
   return (
     <>
       <div>
@@ -69,7 +70,7 @@ function App() {
           !isFinish && (
             <>
               <div className="welcome">
-                <h1>Well Come To Flow !!</h1>
+                <h1>Wellcome To Flow !!</h1>
               </div>
               <div className="login">
                 <label>
@@ -83,10 +84,7 @@ function App() {
                   </div>
                   <div>
                     <p>パスワード</p>
-                    <input
-                      className="pass"
-                      type="password"
-                    />
+                    <input className="pass" type="password" />
                   </div>
                 </label>
                 <div>
