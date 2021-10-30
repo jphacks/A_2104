@@ -9,8 +9,11 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 
 function App() {
   const [data, setData] = useState();
+  const [isAddress, setIsAddress] = useState(false);
   const [needCalendar, setNeedCalendar] = useState(false);
-  const inViewNum = useRef(null);
+  const [inViewNum, setInViewNum] = useState("");
+  const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
   const [views, setViews] = useState({
     agendaView: {
       type: "timeGrid",
@@ -27,9 +30,10 @@ function App() {
   const showCalendar = async () => {
     setViews((prev) => ({
       ...prev,
-      agendaView: { ...prev.agendaView, dayCount: inViewNum.current.value },
+      agendaView: { ...prev.agendaView, dayCount: inViewNum },
     }));
-    const data = await fetchCalendarInfo(inViewNum.current.value);
+    console.log(address);
+    const data = await fetchCalendarInfo(inViewNum, address);
     setData(JSON.parse(data));
     setNeedCalendar(true);
   };
@@ -46,7 +50,7 @@ function App() {
   };
 
   const apply = async () => {
-    await applyOutput(output[1]);
+    await applyOutput(output[1], address);
     setIsFinish(true);
   };
 
@@ -59,29 +63,62 @@ function App() {
   return (
     <>
       <div>
-        {!selectEvents && !needLastCalendar && !needCalendar && !isFinish && (
-          <div className="form">
-            <label>
-              <p>予定を生成する日数を入力してください</p>
-              <input
-                className="inp"
-                type="number"
-                id="viewNum"
-                ref={inViewNum}
-              />
-            </label>
-            <div>
-              <button className="btn2" onClick={showCalendar}>
-                確定
-              </button>
+        {!isAddress &&
+          !selectEvents &&
+          !needLastCalendar &&
+          !needCalendar &&
+          !isFinish && (
+            <>
+              <div>
+                <h1>Well Come To Flow !!</h1>
+              </div>
+              <div className="form">
+                <label>
+                  <p>メールアドレス</p>
+                  <input
+                    className="inp"
+                    type="text"
+                    onChange={(event) => setAddress(event.target.value)}
+                  />
+                  <p>パスワード</p>
+                  <input
+                    className="inp"
+                    type="text"
+                    onChange={(event) => setPassword(event.target.value)}
+                  />
+                </label>
+                <div>
+                  <button className="btn2" onClick={() => setIsAddress(true)}>
+                    確定
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
+        {isAddress &&
+          !selectEvents &&
+          !needLastCalendar &&
+          !needCalendar &&
+          !isFinish && (
+            <div className="form">
+              <label>
+                <p>予定を生成する日数を入力してください</p>
+                <input
+                  className="inp"
+                  type="number"
+                  onChange={(event) => setInViewNum(event.target.value)}
+                />
+              </label>
+              <div>
+                <button className="btn2" onClick={showCalendar}>
+                  確定
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
         {needCalendar && !selectEvents && !needLastCalendar && !isFinish && (
-          <div>
-            <h1>
-              今日から{inViewNum.current.value}日後までの予定は以下の通りです
-            </h1>
+          <div className="origin_calendar">
+            <h1>今日から{inViewNum}日後までの予定は以下の通りです</h1>
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
               views={views}
@@ -144,10 +181,10 @@ function App() {
       )}
       {needLastCalendar && !selectEvents && !needCalendar && !isFinish && (
         <>
-          <div className="lastcalendar header">
+          <div>
             <h1>変更後のカレンダーはこちらです</h1>
           </div>
-          <div className="lastcalendar_body">
+          <div className="origin_calendar">
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
               views={views}

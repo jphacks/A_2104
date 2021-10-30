@@ -1,12 +1,13 @@
-export const fetchCalendarInfo = async (days) => {
+export const fetchCalendarInfo = async (days, email) => {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json; charset=utf-8" },
     body: JSON.stringify({
-      email: "kurita.qwerty@gmail.com",
+      email: email,
       days: days,
     }),
   };
+console.log(requestOptions);
   const endpoint =
     "https://bp9tcorci4.execute-api.ap-northeast-1.amazonaws.com/production/getevent";
   const data = await (await fetch(endpoint, requestOptions)).json();
@@ -27,12 +28,12 @@ export const fetchLastCalendar = async (result) => {
   return output.body;
 };
 
-export const applyOutput = async (output) => {
+export const applyOutput = async (output, address) => {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      email: "kurita.qwerty@gmail.com",
+      email: address,
       body: output,
     }),
   };
