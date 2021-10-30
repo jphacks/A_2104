@@ -39,7 +39,6 @@ function App() {
   };
   const showLastCalendar = async () => {
     const output = await fetchLastCalendar(result);
-    console.log(output);
     setOutput(JSON.parse(output));
     setNeedLastCalendar(true);
     setSelectEvents(false);
@@ -64,7 +63,6 @@ function App() {
           <div className="form">
             <label>
               <p>予定を生成する日数を入力してください</p>
-
               <input
                 className="inp"
                 type="number"
@@ -74,13 +72,16 @@ function App() {
             </label>
             <div>
               <button className="btn2" onClick={showCalendar}>
-                OK
+                確定
               </button>
             </div>
           </div>
         )}
         {needCalendar && !selectEvents && !needLastCalendar && !isFinish && (
           <div>
+            <h1>
+              今日から{inViewNum.current.value}日後までの予定は以下の通りです
+            </h1>
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
               views={views}
@@ -90,7 +91,7 @@ function App() {
               initialView="agendaView"
             />
             <button className="btn2" onClick={showEvents}>
-              NEXT
+              次へ
             </button>
           </div>
         )}

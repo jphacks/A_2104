@@ -8,7 +8,8 @@ const style_box = {
 
 const EventCard = ({ time, title, location, selectW, selectC }) => {
   const [showEvent, setShowEvent] = useState(true);
-  const [showPopup, setShowPopup] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
+    
   const viewChange = () => {
     setShowEvent(false);
     setShowPopup(true);
