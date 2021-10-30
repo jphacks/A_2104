@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import Button from "@material-ui/core/Button";
 import "./EventCard.css";
 
 const style_box = {

@@ -146,7 +146,7 @@ function App() {
           <div className="lastcalendar header">
             <h1>変更後のカレンダーはこちらです</h1>
           </div>
-          <div className="lastcalendar body">
+          <div className="lastcalendar_body">
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
               views={views}
@@ -156,16 +156,20 @@ function App() {
               initialView="agendaView"
             />
           </div>
-          <div className="lastcalendar footer">
+          <div className="lastcalendar_footer">
             <p>この予定をGoogleカレンダーに反映させます</p>
-            <button onClick={apply}>反映</button>
+            <button className="reflection" onClick={apply}>
+              反映
+            </button>
           </div>
         </>
       )}
       {isFinish && (
-        <div>
+        <div className="final">
           <p>変更をGoogleカレンダーに反映させました</p>
-          <button onClick={backtostart}>最初の画面に戻る</button>
+          <button className="tostart" onClick={backtostart}>
+            最初の画面に戻る
+          </button>
         </div>
       )}
     </>
