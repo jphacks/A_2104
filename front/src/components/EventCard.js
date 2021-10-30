@@ -7,7 +7,7 @@ const style_box = {
   alignItems: "center",
 };
 
-const EventCard = ({ time, summary, location, selectW, selectC }) => {
+const EventCard = ({ time, title, location, selectW, selectC }) => {
   const [showEvent, setShowEvent] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const viewChange = () => {
@@ -54,7 +54,7 @@ const EventCard = ({ time, summary, location, selectW, selectC }) => {
               <p>開始時間：{time}</p>
             </div>
             <div>
-              <p>予定名：{summary}</p>
+              <p>予定名：{title}</p>
             </div>
             <div>
               <p>場所：{location}</p>

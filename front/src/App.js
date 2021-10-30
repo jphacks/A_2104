@@ -31,10 +31,6 @@ function App() {
     }));
     const data = await fetchCalendarInfo(inViewNum.current.value);
     setData(JSON.parse(data));
-    console.log(JSON.parse(data)[0][0]);
-    JSON.parse(data)[0]
-      .slice(1)
-      .map((event, id) => console.log(event));
     setNeedCalendar(true);
   };
   const showEvents = () => {
@@ -42,8 +38,8 @@ function App() {
     setEventsNum(data[1].length);
   };
   const showLastCalendar = async () => {
-    console.log(result);
     const output = await fetchLastCalendar(result);
+    console.log(output);
     setOutput(JSON.parse(output));
     setNeedLastCalendar(true);
     setSelectEvents(false);
@@ -51,7 +47,7 @@ function App() {
   };
 
   const apply = async () => {
-    const finishStatus = await applyOutput(result);
+    const finishStatus = await applyOutput(result[1]);
     setIsFinish(true);
   };
 
@@ -106,7 +102,7 @@ function App() {
             {data[1].slice().map((event, id) => (
               <EventCard
                 time={event.start}
-                summary={event.summary}
+                title={event.title}
                 location={event.location}
                 key={id}
                 selectW={() =>
@@ -116,7 +112,7 @@ function App() {
                       mode: "walking",
                       start: event.start,
                       end: event.end,
-                      summary: event.summary,
+                      title: event.title,
                       location: event.location,
                     },
                   ])
@@ -128,7 +124,7 @@ function App() {
                       mode: "driving",
                       start: event.start,
                       end: event.end,
-                      summary: event.summary,
+                      title: event.title,
                       location: event.location,
                     },
                   ])
@@ -141,7 +137,7 @@ function App() {
       {selectEvents && !needLastCalendar && !isFinish && (
         <div className="okdiv">
           <button className="ok" onClick={showLastCalendar}>
-            完了
+            選択終了
           </button>
         </div>
       )}
