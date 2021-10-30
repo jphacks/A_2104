@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, useRef } from "react";
+import React, { useState} from "react";
 import { fetchCalendarInfo, fetchLastCalendar, applyOutput } from "./API";
 import EventCard from "./components/EventCard";
 import FullCalendar from "@fullcalendar/react";
@@ -13,7 +13,6 @@ function App() {
   const [needCalendar, setNeedCalendar] = useState(false);
   const [inViewNum, setInViewNum] = useState("");
   const [address, setAddress] = useState("");
-  const [password, setPassword] = useState("");
   const [views, setViews] = useState({
     agendaView: {
       type: "timeGrid",
@@ -87,7 +86,6 @@ function App() {
                     <input
                       className="pass"
                       type="password"
-                      onChange={(event) => setPassword(event.target.value)}
                     />
                   </div>
                 </label>
@@ -106,7 +104,7 @@ function App() {
           !isFinish && (
             <div className="form">
               <label>
-                <p>予定を生成する日数を入力してください</p>
+                <p>何日分の移動予定を生成しますか？</p>
                 <input
                   className="inp"
                   type="number"
@@ -139,7 +137,7 @@ function App() {
       </div>
       {selectEvents && !needLastCalendar && !isFinish && (
         <>
-          <h1>行動を伴う予定が{eventsNum}件あります</h1>
+          <h1>移動が必要な予定が{eventsNum}件あります</h1>
           <div className="EventList">
             {data[1].slice().map((event, id) => (
               <EventCard
@@ -186,7 +184,7 @@ function App() {
       {needLastCalendar && !selectEvents && !needCalendar && !isFinish && (
         <>
           <div>
-            <h1>変更後のカレンダーはこちらです</h1>
+            <h1>新たに生成された予定は以下の通りです</h1>
           </div>
           <div className="origin_calendar">
             <FullCalendar
