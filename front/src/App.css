@@ -1,71 +1,22 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-.kettei {
-  color: #2073f8;
-  display: inline-flex;
-  flex-direction: column;
-}
-
-.tytle h1 {
-  text-align: center;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.form p{
+.form p {
   display: table;
   margin: 0 auto;
   margin-top: 200px;
   font-size: 60px;
-  color:rgba(35, 151, 246, 0.746)
+  color: rgba(35, 151, 246, 0.746);
 }
 
-.inp{
+.inp {
   font: 15px/24px sans-serif;
-	box-sizing: border-box;
-	width: 10%;
-	padding: 0.3em;
-	transition: 0.3s;
-	letter-spacing: 1px;
-	color: #aaaaaa;
-	border: none;
-	border-bottom: 2px solid #1b2538;
-	background: transparent;
+  box-sizing: border-box;
+  width: 10%;
+  padding: 0.3em;
+  transition: 0.3s;
+  letter-spacing: 1px;
+  color: #aaaaaa;
+  border: none;
+  border-bottom: 2px solid #1b2538;
+  background: transparent;
 
   margin-top: 50px;
   display: block;
@@ -81,11 +32,11 @@
   color: #67c5ff;
   border: solid 2px #67c5ff;
   border-radius: 3px;
-  transition: .4s;
+  transition: 0.4s;
 
   height: 100px;
   width: 200px;
-  margin:40px;
+  margin: 40px;
   margin-top: 60px;
   margin-left: auto;
   margin-right: auto;
@@ -95,40 +46,46 @@
 .btn2:active {
   /*押したとき*/
   -webkit-transform: translateY(2px);
-  transform: translateY(2px);/*沈むように*/
+  transform: translateY(2px); /*沈むように*/
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
-  background-image: linear-gradient(#62bcf8 0%, #4ac8fa 100%);/*グラデーションを明るく*/
+  background-image: linear-gradient(
+    #62bcf8 0%,
+    #4ac8fa 100%
+  ); /*グラデーションを明るく*/
 }
 
 .ok {
-    padding: 0.3em 1em;
-    text-decoration: none;
-    color: #67c5ff;
-    border: solid 2px #67c5ff;
-    border-radius: 3px;
-    transition: .4s;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: 0.4s;
 
-    display: block;
-    width: 250px;
-    height: 100px;
-    font-size: 40px;
-    margin-left: auto;
-    margin-right: auto;
+  display: block;
+  width: 250px;
+  height: 100px;
+  font-size: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .ok:active {
   /*押したとき*/
   -webkit-transform: translateY(2px);
-  transform: translateY(2px);/*沈むように*/
+  transform: translateY(2px); /*沈むように*/
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
-  background-image: linear-gradient(#62bcf8 0%, #4ac8fa 100%);/*グラデーションを明るく*/
+  background-image: linear-gradient(
+    #62bcf8 0%,
+    #4ac8fa 100%
+  ); /*グラデーションを明るく*/
 }
 
-.lastcalendar_body{
+.lastcalendar_body {
   display: block;
 }
 
-.lastcalendar_footer{
+.lastcalendar_footer {
   font-size: 30px;
   display: block;
   margin-left: auto;
@@ -141,7 +98,7 @@
   color: #67c5ff;
   border: solid 2px #67c5ff;
   border-radius: 3px;
-  transition: .4s;
+  transition: 0.4s;
 
   display: block;
   width: 250px;
@@ -152,19 +109,22 @@
 }
 
 .reflection:active {
-/*押したとき*/
--webkit-transform: translateY(2px);
-transform: translateY(2px);/*沈むように*/
-box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
-background-image: linear-gradient(#62bcf8 0%, #4ac8fa 100%);/*グラデーションを明るく*/
+  /*押したとき*/
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px); /*沈むように*/
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  background-image: linear-gradient(
+    #62bcf8 0%,
+    #4ac8fa 100%
+  ); /*グラデーションを明るく*/
 }
 
-.final p{
+.final p {
   display: table;
   margin: 0 auto;
   margin-top: 300px;
   font-size: 60px;
-  color:rgba(35, 151, 246, 0.746)
+  color: rgba(35, 151, 246, 0.746);
 }
 
 .tostart {
@@ -173,7 +133,7 @@ background-image: linear-gradient(#62bcf8 0%, #4ac8fa 100%);/*グラデーショ
   color: #67c5ff;
   border: solid 2px #67c5ff;
   border-radius: 3px;
-  transition: .4s;
+  transition: 0.4s;
 
   display: block;
   margin: 40px;
@@ -185,9 +145,12 @@ background-image: linear-gradient(#62bcf8 0%, #4ac8fa 100%);/*グラデーショ
 }
 
 .tostart:active {
-/*押したとき*/
--webkit-transform: translateY(2px);
-transform: translateY(2px);/*沈むように*/
-box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
-background-image: linear-gradient(#62bcf8 0%, #4ac8fa 100%);/*グラデーションを明るく*/
+  /*押したとき*/
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px); /*沈むように*/
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  background-image: linear-gradient(
+    #62bcf8 0%,
+    #4ac8fa 100%
+  ); /*グラデーションを明るく*/
 }

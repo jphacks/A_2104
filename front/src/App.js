@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useRef } from "react";
-import { fetchCalendarInfo, fetchLastCalendar } from "./API";
+import { fetchCalendarInfo, fetchLastCalendar, applyOutput } from "./API";
 import EventCard from "./components/EventCard";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -31,10 +31,6 @@ function App() {
     }));
     const data = await fetchCalendarInfo(inViewNum.current.value);
     setData(JSON.parse(data));
-    console.log(JSON.parse(data)[0][0]);
-    JSON.parse(data)[0]
-      .slice(1)
-      .map((event, id) => console.log(event));
     setNeedCalendar(true);
   };
   const showEvents = () => {
@@ -42,13 +38,18 @@ function App() {
     setEventsNum(data[1].length);
   };
   const showLastCalendar = async () => {
-    console.log(result);
     const output = await fetchLastCalendar(result);
     setOutput(JSON.parse(output));
     setNeedLastCalendar(true);
     setSelectEvents(false);
     setNeedCalendar(false);
   };
+
+  const apply = async () => {
+    await applyOutput(output[1]);
+    setIsFinish(true);
+  };
+
   const backtostart = () => {
     setIsFinish(false);
     setSelectEvents(false);
@@ -62,7 +63,6 @@ function App() {
           <div className="form">
             <label>
               <p>予定を生成する日数を入力してください</p>
-
               <input
                 className="inp"
                 type="number"
@@ -72,13 +72,16 @@ function App() {
             </label>
             <div>
               <button className="btn2" onClick={showCalendar}>
-                OK
+                確定
               </button>
             </div>
           </div>
         )}
         {needCalendar && !selectEvents && !needLastCalendar && !isFinish && (
           <div>
+            <h1>
+              今日から{inViewNum.current.value}日後までの予定は以下の通りです
+            </h1>
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
               views={views}
@@ -88,7 +91,7 @@ function App() {
               initialView="agendaView"
             />
             <button className="btn2" onClick={showEvents}>
-              NEXT
+              次へ
             </button>
           </div>
         )}
@@ -100,7 +103,7 @@ function App() {
             {data[1].slice().map((event, id) => (
               <EventCard
                 time={event.start}
-                summary={event.summary}
+                title={event.title}
                 location={event.location}
                 key={id}
                 selectW={() =>
@@ -110,7 +113,7 @@ function App() {
                       mode: "walking",
                       start: event.start,
                       end: event.end,
-                      summary: event.summary,
+                      title: event.title,
                       location: event.location,
                     },
                   ])
@@ -122,7 +125,7 @@ function App() {
                       mode: "driving",
                       start: event.start,
                       end: event.end,
-                      summary: event.summary,
+                      title: event.title,
                       location: event.location,
                     },
                   ])
@@ -135,7 +138,7 @@ function App() {
       {selectEvents && !needLastCalendar && !isFinish && (
         <div className="okdiv">
           <button className="ok" onClick={showLastCalendar}>
-            完了
+            選択終了
           </button>
         </div>
       )}
@@ -156,14 +159,18 @@ function App() {
           </div>
           <div className="lastcalendar_footer">
             <p>この予定をGoogleカレンダーに反映させます</p>
-            <button className="reflection" onClick={() => setIsFinish(true)}>反映</button>
+            <button className="reflection" onClick={apply}>
+              反映
+            </button>
           </div>
         </>
       )}
       {isFinish && (
         <div className="final">
           <p>変更をGoogleカレンダーに反映させました</p>
-          <button className="tostart" onClick={backtostart}>最初の画面に戻る</button>
+          <button className="tostart" onClick={backtostart}>
+            最初の画面に戻る
+          </button>
         </div>
       )}
     </>

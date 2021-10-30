@@ -25,5 +25,4 @@ yarn-error.log*
 .DS_Store
 
 api_data.json
-token.to_json
-calendar.json
+token.json
