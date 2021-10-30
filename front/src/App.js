@@ -69,23 +69,27 @@ function App() {
           !needCalendar &&
           !isFinish && (
             <>
-              <div>
+              <div className="welcome">
                 <h1>Well Come To Flow !!</h1>
               </div>
-              <div className="form">
+              <div className="login">
                 <label>
-                  <p>メールアドレス</p>
-                  <input
-                    className="inp"
-                    type="text"
-                    onChange={(event) => setAddress(event.target.value)}
-                  />
-                  <p>パスワード</p>
-                  <input
-                    className="inp"
-                    type="text"
-                    onChange={(event) => setPassword(event.target.value)}
-                  />
+                  <div>
+                    <p>メールアドレス</p>
+                    <input
+                      className="mail"
+                      type="password"
+                      onChange={(event) => setAddress(event.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <p>パスワード</p>
+                    <input
+                      className="pass"
+                      type="password"
+                      onChange={(event) => setPassword(event.target.value)}
+                    />
+                  </div>
                 </label>
                 <div>
                   <button className="btn2" onClick={() => setIsAddress(true)}>

@@ -1,9 +1,70 @@
+.welcome h1 {
+  display: table;
+  margin: 0 auto;
+  margin-top: 100px;
+  font-size: 80px;
+  color: #364e96;/*文字色*/
+  padding: 0.5em 0;/*上下の余白*/
+  border-top: solid 3px #364e96;/*上線*/
+  border-bottom: solid 3px #364e96;/*下線*/
+}
+
+.login div {
+  display: block;
+}
+
+.login p {
+  display: table;
+  margin: 0 auto;
+  margin-top: 100px;
+  font-size: 60px;
+  color: rgba(35, 151, 246, 0.746);
+}
+
 .form p {
   display: table;
   margin: 0 auto;
   margin-top: 200px;
   font-size: 60px;
   color: rgba(35, 151, 246, 0.746);
+}
+
+.mail {
+  font: 15px/24px sans-serif;
+  box-sizing: border-box;
+  width: 10%;
+  padding: 0.3em;
+  transition: 0.3s;
+  letter-spacing: 1px;
+  color: #aaaaaa;
+  border: none;
+  border-bottom: 2px solid #1b2538;
+  background: transparent;
+
+  margin-top: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  outline: none;
+}
+
+.pass {
+  font: 15px/24px sans-serif;
+  box-sizing: border-box;
+  width: 10%;
+  padding: 0.3em;
+  transition: 0.3s;
+  letter-spacing: 1px;
+  color: #aaaaaa;
+  border: none;
+  border-bottom: 2px solid #1b2538;
+  background: transparent;
+
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  outline: none;
 }
 
 .inp {
