@@ -13,6 +13,7 @@ function App() {
   const [needCalendar, setNeedCalendar] = useState(false);
   const [inViewNum, setInViewNum] = useState("");
   const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
   const [views, setViews] = useState({
     agendaView: {
       type: "timeGrid",
@@ -67,21 +68,32 @@ function App() {
           !needLastCalendar &&
           !needCalendar &&
           !isFinish && (
-            <div className="form">
-              <label>
-                <p>メールアドレスを入力してください</p>
-                <input
-                  className="inp"
-                  type="text"
-                  onChange={(event) => setAddress(event.target.value)}
-                />
-              </label>
+            <>
               <div>
-                <button className="btn2" onClick={() => setIsAddress(true)}>
-                  確定
-                </button>
+                <h1>Well Come To Flow !!</h1>
               </div>
-            </div>
+              <div className="form">
+                <label>
+                  <p>メールアドレス</p>
+                  <input
+                    className="inp"
+                    type="text"
+                    onChange={(event) => setAddress(event.target.value)}
+                  />
+                  <p>パスワード</p>
+                  <input
+                    className="inp"
+                    type="text"
+                    onChange={(event) => setPassword(event.target.value)}
+                  />
+                </label>
+                <div>
+                  <button className="btn2" onClick={() => setIsAddress(true)}>
+                    確定
+                  </button>
+                </div>
+              </div>
+            </>
           )}
         {isAddress &&
           !selectEvents &&
