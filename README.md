@@ -2,6 +2,12 @@
 
 [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2021/07/JPHACKS2021_ogp.jpg)](https://www.youtube.com/watch?v=LUPQFB4QyVo)
 
+
+
+https://user-images.githubusercontent.com/54445545/168723296-5376593d-2c22-4e95-a59b-90fe84b43a07.mp4
+
+
+
 ## 製品概要
 ### 背景(製品開発のきっかけ、課題等）
  普段，私たちはカレンダーアプリなどに予定を入力して予定を管理しています． しかし，これらの予定の間には"隠れた予定"があります．  予定間の移動時間や，朝出かける前の準備時間など，隠れた予定は日常に潜んでいて，これらについて考えることは脳のワーキングメモリを消費してしまいます．そこで，私たちはこれらの"隠れた予定"を自動で抽出し，可視化をするアプリ"Flow"を提供します．
